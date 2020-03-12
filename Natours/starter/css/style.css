@@ -1,0 +1,46 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+/* universal selector */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    /* put adding around the entire body */
+    padding: 30px;
+}
+
+.header {
+    /* just fill 95% of the view height */
+    height: 95vh;
+    /* use backgound image with linear gradient from one color to another from left to right bottom with 80% transparency*/
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba(126, 213, 111, 0.8),
+        rgba(40, 180, 131, 0.8)), 
+    url(../img/hero.jpg);
+    /* cover the element */
+    background-size: cover;
+    /* stays at the top even when you change the view */
+    background-position: top;
+    
+    /* to clip the image, you start from the left top and then move to the right then right bottom and last left bottom,
+    . The arguments indicate each cordinate x, y. If x is 100% it means it's to the very left.
+    */
+    clip-path: polygon(0 0, 100% 0, 100% 200px, 0 100% )
+
+}
