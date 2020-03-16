@@ -10,12 +10,8 @@ $color-tertiary: green; // make a variable
 $color-text-dark: #333;
 $width-button: 150px;
 
-// nesting style
-nav {
-  margin: 30px;
-  background-color: $color-primary;
-
-  // use the nested sass, same as below
+//mixin - reusable chunk of code
+@mixin clearfix {
   &::after {
     content: "";
     clear: both; // this means floating the elements are not allowed on both sides
@@ -23,13 +19,28 @@ nav {
   }
 }
 
+@mixin style-link-text {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $color-text-dark;
+}
+
+// nesting style
+nav {
+  margin: 30px;
+  background-color: $color-primary;
+
+  //  use mixin
+  @include clearfix;
+}
+
 // this is the solution when you have child elements all as float - clear: both
 // to solve when you have child elements are floating and parent is then clapsed. By adding clear both with the psedo element ::after you can make the parent element appear.
-nav::after {
-  content: "";
-  clear: both; // this means floating the elements are not allowed on both sides
-  display: table;
-}
+// nav::after {
+//   content:"";
+//   clear: both;  // this means floating the elements are not allowed on both sides
+//   display: table;
+// }
 
 .navigation {
   list-style: none;
@@ -49,9 +60,7 @@ nav::after {
     // anchar element within the li,
     // the psedo class here for link for better practice
     a:link {
-      text-decoration: none;
-      text-transform: uppercase;
-      color: $color-text-dark;
+      @include style-link-text;
     }
   }
 }
@@ -66,9 +75,8 @@ nav::after {
   display: inline-block;
   text-align: center;
   border-radius: 100px;
-  text-decoration: none;
-  text-transform: uppercase;
   width: $width-button;
+  @include style-link-text;
 }
 
 .btn-main {
