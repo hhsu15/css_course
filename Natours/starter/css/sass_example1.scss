@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// declare variable
+$color-primary: #f9ed69; // make a variable
+$color-secondary: red; // make a variable
+$color-tertiary: green; // make a variable
+$color-text-dark: #333;
+$width-button: 150px;
+
+// nesting style
+nav {
+  margin: 30px;
+  background-color: $color-primary;
+
+  // use the nested sass, same as below
+  &::after {
+    content: "";
+    clear: both; // this means floating the elements are not allowed on both sides
+    display: table;
+  }
+}
+
+// this is the solution when you have child elements all as float - clear: both
+// to solve when you have child elements are floating and parent is then clapsed. By adding clear both with the psedo element ::after you can make the parent element appear.
+nav::after {
+  content: "";
+  clear: both; // this means floating the elements are not allowed on both sides
+  display: table;
+}
+
+.navigation {
+  list-style: none;
+  //   when you have all your child elements as float they will clapse. The solution is to use clear:both
+  float: left;
+  // nested styling - for list inside of nav. This one does not need "&" since it's like nav li {..}
+  li {
+    display: inline-block;
+    margin-left: 30px;
+
+    // nesting psedo element using "&" since it needs to attached to the element li (e.g., li:first-child)
+    // this is same as the css fomat( nav li:first-child)
+    &:first-child {
+      margin: 0px;
+    }
+
+    // anchar element within the li,
+    // the psedo class here for link for better practice
+    a:link {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $color-text-dark;
+    }
+  }
+}
+
+.buttons {
+  float: right;
+}
+
+.btn-main:link,
+.btn-hot:link {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: $width-button;
+}
+
+.btn-main {
+  &:link {
+    background-color: $color-secondary;
+  }
+
+  &:hover {
+    background-color: darken($color-secondary, 15%);
+  }
+}
+
+.btn-hot {
+  &:link {
+    background-color: $color-tertiary;
+  }
+
+  &:hover {
+    background-color: lighten($color-tertiary, 15%);
+  }
+}

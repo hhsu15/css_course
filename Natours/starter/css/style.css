@@ -7,40 +7,256 @@ Dark green: #28b485
 
 */
 
-/* universal selector */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
+/* universal selector, including the all the pseudo elements before and after to make sure 
+they have the same behavior. This is considered better practice*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* inherit box sizing from body. since it's not inherited by default */
+  box-sizing: inherit;
+}
+
+/* root selector using html */
+html {
+  /* Should always use this!! */
+  font-size: 62.5%;
 }
 
 body {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.7;
-    color: #777;
-    /* put adding around the entire body */
-    padding: 30px;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: #777;
+  /* put adding around the entire body */
+  padding: 3rem;
+
+  /* box-sizing allow you to keep the size of the element with the width and height you specify taking into consideration of padding and border */
+  box-sizing: border-box;
 }
 
 .header {
-    /* just fill 95% of the view height */
-    height: 95vh;
-    /* use backgound image with linear gradient from one color to another from left to right bottom with 80% transparency*/
-    background-image: linear-gradient(
-        to right bottom, 
-        rgba(126, 213, 111, 0.8),
-        rgba(40, 180, 131, 0.8)), 
+  /* just fill 95% of the view height */
+  height: 95vh;
+  /* use backgound image with linear gradient from one color to another from left to right bottom with 80% transparency*/
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 131, 0.8)
+    ),
     url(../img/hero.jpg);
-    /* cover the element */
-    background-size: cover;
-    /* stays at the top even when you change the view */
-    background-position: top;
-    
-    /* to clip the image, you start from the left top and then move to the right then right bottom and last left bottom,
+  /* cover the element */
+  background-size: cover;
+  /* stays at the top even when you change the view */
+  background-position: top;
+
+  /* to clip the image, you start from the left top and then move to the right then right bottom and last left bottom,
     . The arguments indicate each cordinate x, y. If x is 100% it means it's to the very left.
     */
-    clip-path: polygon(0 0, 100% 0, 100% 200px, 0 100% )
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+  position: relative;
+}
 
+/* define the location of an element fixed within the parent element which will have a relative position */
+.header__logo-box {
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+}
+
+.header__logo {
+  /* then width will be automatically adjusted */
+  height: 3.5rem;
+}
+
+/* apply animation when hovering */
+.header__logo:hover {
+  animation: moveInRight 2s ease-out;
+}
+
+/* center the element in the center of the screen */
+.header__text-box {
+  /* keep the element always in the center no matter how you change the size of the screen */
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  /* adjust the center element using translate(to ignore the size of the element), shift 50% to the left and 50% of the top */
+  transform: translate(-50%, -50%);
+  /* align the text in this element */
+  text-align: center;
+}
+
+.heading-primary {
+  color: #ffff;
+  text-transform: uppercase;
+
+  /* just use this everytime for automation, it's a hack though */
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+}
+
+.heading-primary--main {
+  /* block element occupies the entire width and create line breaks for separate spams */
+  display: block;
+  font-size: 6rem;
+  font-weight: 440rem;
+  letter-spacing: 3.5rem;
+
+  /* apply animation */
+  animation-name: moveInLeft;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+}
+
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 400rem;
+  letter-spacing: 1.74rem;
+
+  /* apply animation using short cut, same as above*/
+  animation: moveInRight 2s ease-out;
+}
+
+/* animation 
+Move the elements
+*/
+@keyframes moveInLeft {
+  0% {
+    /* starts with zero transparency */
+    opacity: 0;
+    /* positive number is from left to right, legative means right to left */
+    transform: translatex(-10rem);
+  }
+
+  80% {
+    transform: translatex(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    /* back to the original position */
+    transform: translatex(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    /* starts with zero transparency */
+    opacity: 0;
+    /* positive number is from left to right, legative means right to left */
+    transform: translatex(10rem);
+  }
+
+  /* 60% {
+        transform: rotate(350deg);
+    } */
+
+  80% {
+    transform: translatex(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    /* back to the original position */
+    transform: translatex(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    /* starts with zero transparency */
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    /* back to the original position */
+    transform: translateY(0);
+  }
+}
+
+/*  ":link and :visisted" is a pseudo class of a selector anchar element. 
+This means use the same effect rather than the default. 
+This is the inirial state of an element */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  /* remove underline and other default effect*/
+  text-decoration: none;
+  /* this is shortten way of saying top bottom 40 and left right 40 */
+  padding: 1.5rem 4rem;
+  /* should always have inline block so it does not overlap other areas */
+  display: inline-block;
+  /* make round edge hape */
+  border-radius: 10rem;
+  /* use animation - this is an esier way compared to the animation used above
+  if we are not sure what properties to animate, just use all*/
+  transition: all 0.2s;
+  /* this is needed for the :after to be hidden behind this parent element */
+  position: relative;
+  font-size: 1.6rem;
+}
+
+/* transform is very import function!!! */
+.btn:hover {
+  /* move up */
+  transform: translateY(-0.3rem);
+  /* add box shadow, 
+  first value is the x direction, second is y direction, third is blur and forth is color
+  */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+/* effect when it's clicked */
+.btn:active {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn--white {
+  background-color: #fff;
+  color: #777;
+}
+
+/* after pesuto element - a virtual element of btn element 
+always need these attributes
+you make it like the parent element - btn here and hide it*/
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  /* to make the pseudo hidden after the button */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* set the z-index position (recall from the Portals) to be lower to the parent element */
+  z-index: -1;
+  /* show the transition - i.e., show animation */
+  transition: all 0.4s;
+}
+
+.btn--white:after {
+  background-color: #fff;
+}
+
+/* so this one will be pseudo element when you hover the btn
+we can use differnt scale for X and Y*/
+.btn:hover::after {
+  /* scale to make the button large */
+  transform: scaleX(1.4) scaleY(1.6);
+  /* to make it invisible  after it scales, this is a trick to make something fade out*/
+  opacity: 0;
+}
+
+.btn--animated {
+  /*  the fourth argument is delay  */
+  animation: moveInBottom 1s ease-out 0.75s;
+  /* use backwards animation-fill-mode so inially the btn element won't display */
+  animation-fill-mode: backwards;
 }
