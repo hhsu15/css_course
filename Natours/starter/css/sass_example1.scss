@@ -8,6 +8,7 @@ $color-primary: #f9ed69; // make a variable
 $color-secondary: red; // make a variable
 $color-tertiary: green; // make a variable
 $color-text-dark: #333;
+$color-text-light: #eee;
 $width-button: 150px;
 
 //mixin - reusable chunk of code
@@ -19,10 +20,16 @@ $width-button: 150px;
   }
 }
 
-@mixin style-link-text {
+// mixin with variable
+@mixin style-link-text($color) {
   text-decoration: none;
   text-transform: uppercase;
-  color: $color-text-dark;
+  color: $color;
+}
+
+// use function for computing
+@function add($a, $b) {
+  @return $a + $b;
 }
 
 // nesting style
@@ -60,7 +67,7 @@ nav {
     // anchar element within the li,
     // the psedo class here for link for better practice
     a:link {
-      @include style-link-text;
+      @include style-link-text($color-text-dark);
     }
   }
 }
@@ -69,18 +76,19 @@ nav {
   float: right;
 }
 
-.btn-main:link,
-.btn-hot:link {
+// use extend
+%btn-placeholder {
   padding: 10px;
   display: inline-block;
   text-align: center;
   border-radius: 100px;
   width: $width-button;
-  @include style-link-text;
+  @include style-link-text($color-text-light);
 }
 
 .btn-main {
   &:link {
+    @extend %btn-placeholder;
     background-color: $color-secondary;
   }
 
@@ -91,6 +99,7 @@ nav {
 
 .btn-hot {
   &:link {
+    @extend %btn-placeholder;
     background-color: $color-tertiary;
   }
 
