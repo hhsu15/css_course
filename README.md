@@ -169,7 +169,28 @@ Preprocessor for CSS, which then gets compiled to css file. Using Sass, you will
 - extends
 - control directives: if statements etc
 
-Refer to examples.
+Refer to `sass_example_1.scss`
+
+### Installation
+
+```bash
+
+npm install node-sass --save-dev
+```
+
+Refer to `package.json` of `Natours` project. Basically as below. `-w` stands for watch. It will compile automatically when you make changes to your scss file.
+
+```
+"scripts": {
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
+  },
+```
+
+Then run
+
+```bash
+npm run compile:sass
+```
 
 **------------------------Course set up ------------------------------**
 
