@@ -1,0 +1,77 @@
+.composition {
+  position: relative;
+  &__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
+    position: absolute;
+    z-index: 10;
+    transition: all 0.2s;
+    outline-offset: 2rem;
+
+    &--p1 {
+      left: 0;
+      top: -2rem;
+    }
+    &--p2 {
+      right: 0;
+      top: 2rem;
+    }
+    &--p3 {
+      left: 20%;
+      top: 10rem;
+    }
+
+    &:hover {
+      // simiar to border but newer
+      outline: 1.5rem solid $color-primary;
+      transform: scale(1.1) translateY(-0.5rem);
+      box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
+      z-index: 20;
+    }
+  }
+
+  // when hover the entire composition, then for the photos that are not hovered
+  &:hover &__photo:not(:hover) {
+    transform: scale(0.9);
+  }
+}
+
+.card {
+  // perspective property to show better transition for rotation
+  perspective: 150rem;
+  -moz-perspective: 150rem; //for firedfox
+  position: relative;
+  height: 50rem;
+
+  &__side {
+    color: #fff;
+    font-size: 2rem;
+    height: 50rem;
+    transition: all 0.8s ease;
+    // this is how we postion the front and back cards in the same place
+    position: absolute;
+    top: 0;
+    left: 0;
+    // set width to 100% otherwise it will try to fix the width of the text
+    width: 100%;
+    // backface visibility to hide the back elements
+    // backface-visibility: hidden;
+
+    &--front {
+      background-color: $color-white;
+    }
+
+    &--back {
+      background-color: green;
+      transform: rotateY(180deg);
+    }
+  }
+
+  &:hover &__side--front:hover {
+    transform: rotateY(180deg);
+  }
+
+  &:hover &__side--back:hover {
+    transform: rotateY(0);
+  }
+}

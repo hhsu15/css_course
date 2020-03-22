@@ -1,0 +1,109 @@
+/*  ":link and :visisted" is a pseudo class of a selector anchar element. 
+This means use the same effect rather than the default. 
+This is the inirial state of an element */
+
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    /* remove underline and other default effect*/
+    text-decoration: none;
+    /* this is shortten way of saying top bottom 40 and left right 40 */
+    padding: 1.5rem 4rem;
+    /* should always have inline block so it does not overlap other areas */
+    display: inline-block;
+    /* make round edge hape */
+    border-radius: 10rem;
+    /* use animation - this is an esier way compared to the animation used above
+    if we are not sure what properties to animate, just use all*/
+    transition: all 0.2s;
+    /* this is needed for the :after to be hidden behind this parent element */
+    position: relative;
+    font-size: $default-font-size;
+  }
+
+  /* transform is very import function!!! */
+  &:hover {
+    /* move up */
+    transform: translateY(-0.3rem);
+    /* add box shadow, 
+    first value is the x direction, second is y direction, third is blur and forth is color
+    */
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    &::after {
+      /* scale to make the button large */
+      transform: scaleX(1.4) scaleY(1.6);
+      /* to make it invisible  after it scales, this is a trick to make something fade out*/
+      opacity: 0;
+    }
+  }
+
+  /* effect when it's clicked */
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: #fff;
+    color: $color-gray;
+
+    &:after {
+      background-color: #fff;
+    }
+  }
+
+  /* after pesuto element - a virtual element of btn element 
+  always need these attributes
+  you make it like the parent element - btn here and hide it*/
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    /* to make the pseudo hidden after the button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* set the z-index position (recall from the Portals) to be lower to the parent element */
+    z-index: -1;
+    /* show the transition - i.e., show animation */
+    transition: all 0.4s;
+  }
+
+  /* so this one will be pseudo element when you hover the btn
+  we can use differnt scale for X and Y*/
+
+  &--animated {
+    /*  the fourth argument is delay  */
+    animation: moveInBottom 1s ease-out 0.75s;
+    /* use backwards animation-fill-mode so inially the btn element won't display */
+    animation-fill-mode: backwards;
+  }
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+    transform: translateY(-2px);
+  }
+
+  // when you click, it goes down back to original
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+  }
+}

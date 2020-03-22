@@ -1,0 +1,51 @@
+.header {
+  /* just fill 95% of the view height */
+  height: 95vh;
+  /* use backgound image with linear gradient from one color to another from left to right bottom with 80% transparency*/
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero.jpg);
+  /* cover the element */
+  background-size: cover;
+  /* stays at the top even when you change the view */
+  background-position: top;
+
+  /* to clip the image, you start from the left top and then move to the right then right bottom and last left bottom,
+      . The arguments indicate each cordinate x, y. If x is 100% it means it's to the very left.
+      */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+
+  // Use "&" indicates up to the current root and you contiune to build nested structure
+  // this equals .header__logo-box
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    /* then width will be automatically adjusted */
+    height: 3.5rem;
+  }
+
+  /* center the element in the center of the screen */
+  &__text-box {
+    /* keep the element always in the center no matter how you change the size of the screen */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* adjust the center element using translate(to ignore the size of the element), shift 50% to the left and 50% of the top */
+    transform: translate(-50%, -50%);
+    /* align the text in this element */
+    text-align: center;
+  }
+}
+
+/* apply animation when hovering */
+.header__logo:hover {
+  animation: moveInRight 2s ease-out;
+}

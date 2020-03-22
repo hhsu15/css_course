@@ -1,0 +1,21 @@
+/* universal selector, including the all the pseudo elements before and after to make sure 
+they have the same behavior. This is considered better practice*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* inherit box sizing from body. since it's not inherited by default */
+  box-sizing: inherit;
+}
+
+/* root selector using html */
+html {
+  /* Should always use this!! */
+  font-size: 62.5%;
+}
+
+body {
+  /* box-sizing allow you to keep the size of the element with the width and height you specify taking into consideration of padding and border */
+  box-sizing: border-box;
+}

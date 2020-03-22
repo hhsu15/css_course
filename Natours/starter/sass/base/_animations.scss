@@ -1,0 +1,58 @@
+/* animation 
+Move the elements
+*/
+@keyframes moveInLeft {
+  0% {
+    /* starts with zero transparency */
+    opacity: 0;
+    /* positive number is from left to right, legative means right to left */
+    transform: translatex(-10rem);
+  }
+
+  80% {
+    transform: translatex(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    /* back to the original position */
+    transform: translatex(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    /* starts with zero transparency */
+    opacity: 0;
+    /* positive number is from left to right, legative means right to left */
+    transform: translatex(10rem);
+  }
+
+  /* 60% {
+          transform: rotate(350deg);
+      } */
+
+  80% {
+    transform: translatex(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    /* back to the original position */
+    transform: translatex(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    /* starts with zero transparency */
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    /* back to the original position */
+    transform: translateY(0);
+  }
+}

@@ -58,7 +58,7 @@ Element represented as a box model, which is made of:
 
 When use `box-sizing: border-box`, the specified width and height will be applied to the box model, as opposed to the `content`. So the above elements will be adjusted automatically.
 
-There are four types: Inline, Block-level, Inline-Block.
+There are 3 types: Inline, Block-level, Inline-Block.
 
 ### Block-Level Box
 
@@ -191,3 +191,28 @@ Then run
 ```bash
 npm run compile:sass
 ```
+
+## Responsive design principles
+
+- Fluid grids and layouts
+  - to allow contents adapt to current viewport width used to browse the website. Use % rather than px for all layout related lengths.
+- Flexible/responsive images
+  - images behave differently than texts.
+- Media queries
+  - change styles based on viewport widths (breakpoints).
+
+### Layout types
+
+- Float Layouts (for Natours project)
+- Flexbox (for Nexter)
+- CSS Grid (Trillo)
+
+## Ement
+
+Use this to quickly create elements in html!
+
+Type `.myclass` and enter ->
+
+<div class='myclass'></div>
+
+Type `secotr.myclass` -> <sector class='myclass'></sector>

@@ -1,0 +1,30 @@
+.section-about {
+  background-color: $color-gray-light-1;
+  padding: 35rem 0;
+  margin-top: -20vh;
+}
+
+.section-features {
+  padding: 20rem 0; // 0 for left and right
+  margin-top: -15vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/nat-4.jpg);
+  background-size: cover;
+
+  transform: skewY(-7deg);
+
+  // universal selector that selects only the direct child
+  & > * {
+    transform: skewY(7deg); // skew only the row element back
+  }
+}
+
+.section-tours {
+  background-color: $color-gray-light-1;
+  padding: 30rem 0 50rem 0;
+  margin-top: -20vh;
+}

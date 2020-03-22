@@ -1,0 +1,8 @@
+// standard way to fix clapsed row when using float
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
