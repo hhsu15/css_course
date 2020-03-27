@@ -46,10 +46,19 @@ This is the inirial state of an element */
 
   &--white {
     background-color: #fff;
-    color: $color-gray;
+    color: $color-grey;
 
     &:after {
       background-color: #fff;
+    }
+  }
+
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:after {
+      background-color: $color-primary;
     }
   }
 
