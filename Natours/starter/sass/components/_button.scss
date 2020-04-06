@@ -2,7 +2,9 @@
 This means use the same effect rather than the default. 
 This is the inirial state of an element */
 
+// this btn class is used for <a> and <button> elements
 .btn {
+  &, // a <button> does not have :link and :visited psuedo element so we add this to apply to all
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -20,6 +22,10 @@ This is the inirial state of an element */
     /* this is needed for the :after to be hidden behind this parent element */
     position: relative;
     font-size: $default-font-size;
+
+    // change for <button> element
+    border: none;
+    cursor: pointer;
   }
 
   /* transform is very import function!!! */
@@ -39,7 +45,9 @@ This is the inirial state of an element */
   }
 
   /* effect when it's clicked */
-  &:active {
+  &:active,
+  &:focus {
+    outline: none;
     transform: translateY(-0.1rem);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
